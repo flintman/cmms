@@ -190,6 +190,7 @@ const Teams = ({ openModal, handleCloseModal }: PropsType) => {
       )
     }
   ];
+
   const handleOpenModal = (team: Team) => {
     setCurrentTeam(team);
     window.history.replaceState(

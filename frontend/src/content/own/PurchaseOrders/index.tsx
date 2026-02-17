@@ -222,9 +222,11 @@ function PurchaseOrders() {
       width: 150,
       valueGetter: (params: GridRenderCellParams<null, PurchaseOrder>) =>
         getFormattedCurrency(
-          params.row.partQuantities.reduce((acc, partQuantity) => {
-            return acc + partQuantity.part.cost * partQuantity.quantity;
-          }, 0)
+          Math.round(
+            params.row.partQuantities.reduce((acc, partQuantity) => {
+              return acc + partQuantity.part.cost * partQuantity.quantity;
+            }, 0) * 100
+          ) / 100
         )
     },
     {

@@ -68,9 +68,10 @@ export const CompanySettingsProvider: FC = ({ children }) => {
   const getFormattedCurrency = (amount: number): string => {
     const code = generalPreferences.currency.code;
     const currenciesToReverse = ['$'];
+    const formattedAmount = typeof amount === 'number' ? amount.toFixed(2) : amount;
     return currenciesToReverse.includes(code)
-      ? `${code} ${amount} `
-      : `${amount} ${code}`;
+      ? `${code} ${formattedAmount} `
+      : `${formattedAmount} ${code}`;
   };
 
   const onUploadError = (err: { message: string }) => {

@@ -87,11 +87,13 @@ export default function PartQuantitiesList({
         secondaryAction={
           <Typography variant="h6" fontWeight="bold">
             {getFormattedCurrency(
-              partQuantities.reduce(
-                (acc, partQuantity) =>
-                  acc + partQuantity.part.cost * partQuantity.quantity,
-                0
-              )
+              Math.round(
+                partQuantities.reduce(
+                  (acc, partQuantity) =>
+                    acc + partQuantity.part.cost * partQuantity.quantity,
+                  0
+                ) * 100
+              ) / 100
             )}
           </Typography>
         }
