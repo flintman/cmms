@@ -414,7 +414,7 @@ function CategoriesLayout(props: CategoriesLayoutProps) {
                       <Box
                         component="span"
                         sx={{
-                          display: { xs: 'none', md: 'inline-block' }
+                          display: 'inline-block'
                         }}
                       >
                         <Box ml={3} textAlign="right">
