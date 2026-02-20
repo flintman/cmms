@@ -82,12 +82,10 @@ public class CostCategoryController {
         User user = userService.whoami(req);
         if (user.getRole().getCreatePermissions().contains(PermissionEntity.CATEGORIES)) {
             if (costCategoryService.findById(id).isPresent()) {
-                CostCategory savedCostCategory = costCategoryService.findById(id).get();
-                if (user.getRole().getCreatePermissions().contains(PermissionEntity.CATEGORIES) &&
-                        user.getRole().belongsOnlyToCompany(savedCostCategory.getCompanySettings().getCompany())) {
-                    return costCategoryService.update(id, costCategory);
-                } else throw new CustomException("Forbidden", HttpStatus.FORBIDDEN);
-            } else throw new CustomException("CostCategory not found", HttpStatus.NOT_FOUND);
+                return costCategoryService.update(id, costCategory);
+            } else {
+                throw new CustomException("Category not found", HttpStatus.NOT_FOUND);
+            }
         } else throw new CustomException("Access denied", HttpStatus.FORBIDDEN);
 
     }
