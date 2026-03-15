@@ -6,6 +6,7 @@ import com.grash.mapper.CostCategoryMapper;
 import com.grash.model.CostCategory;
 import com.grash.repository.CostCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class CostCategoryService {
     }
 
     public Collection<CostCategory> getAll() {
-        return costCategoryRepository.findAll();
+        return costCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -50,6 +51,6 @@ public class CostCategoryService {
     }
 
     public Collection<CostCategory> findByCompanySettings(Long id) {
-        return costCategoryRepository.findByCompanySettings_Id(id);
+        return costCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
     }
 }

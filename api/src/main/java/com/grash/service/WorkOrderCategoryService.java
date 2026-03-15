@@ -6,6 +6,7 @@ import com.grash.mapper.WorkOrderCategoryMapper;
 import com.grash.model.WorkOrderCategory;
 import com.grash.repository.WorkOrderCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class WorkOrderCategoryService {
     }
 
     public Collection<WorkOrderCategory> getAll() {
-        return workOrderCategoryRepository.findAll();
+        return workOrderCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -50,7 +51,7 @@ public class WorkOrderCategoryService {
     }
 
     public Collection<WorkOrderCategory> findByCompanySettings(Long id) {
-        return workOrderCategoryRepository.findByCompanySettings_Id(id);
+        return workOrderCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
     }
 
     public Optional<WorkOrderCategory> findByNameIgnoreCaseAndCompanySettings(String name, Long id) {

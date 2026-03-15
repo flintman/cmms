@@ -6,6 +6,7 @@ import com.grash.mapper.PartCategoryMapper;
 import com.grash.model.PartCategory;
 import com.grash.repository.PartCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,7 @@ public class PartCategoryService {
     }
 
     public Collection<PartCategory> getAll() {
-        return partCategoryRepository.findAll();
+        return partCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -47,7 +48,7 @@ public class PartCategoryService {
     }
 
     public Collection<PartCategory> findByCompanySettings(Long id) {
-        return partCategoryRepository.findByCompanySettings_Id(id);
+        return partCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
     }
 
     public Optional<PartCategory> findByNameIgnoreCaseAndCompanySettings(String category, Long companySettingsId) {

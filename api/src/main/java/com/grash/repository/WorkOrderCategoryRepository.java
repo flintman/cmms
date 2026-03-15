@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface WorkOrderCategoryRepository extends JpaRepository<WorkOrderCategory, Long> {
     Collection<WorkOrderCategory> findByCompanySettings_Id(Long id);
+    
+    Collection<WorkOrderCategory> findByCompanySettings_IdOrderByNameAsc(Long id);
 
     Optional<WorkOrderCategory> findByNameIgnoreCaseAndCompanySettings_Id(String name, Long id);
 

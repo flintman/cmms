@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface AssetCategoryRepository extends JpaRepository<AssetCategory, Long> {
 
     Collection<AssetCategory> findByCompanySettings_Id(Long id);
+    
+    Collection<AssetCategory> findByCompanySettings_IdOrderByNameAsc(Long id);
 
     Optional<AssetCategory> findByName(String name);
 

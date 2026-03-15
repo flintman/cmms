@@ -6,6 +6,7 @@ import com.grash.mapper.TimeCategoryMapper;
 import com.grash.model.TimeCategory;
 import com.grash.repository.TimeCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class TimeCategoryService {
     }
 
     public Collection<TimeCategory> getAll() {
-        return timeCategoryRepository.findAll();
+        return timeCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -49,7 +50,7 @@ public class TimeCategoryService {
     }
 
     public Collection<TimeCategory> findByCompanySettings(Long id) {
-        return timeCategoryRepository.findByCompanySettings_Id(id);
+        return timeCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
 
     }
 

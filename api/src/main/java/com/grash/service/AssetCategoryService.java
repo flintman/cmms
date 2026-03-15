@@ -6,6 +6,7 @@ import com.grash.mapper.AssetCategoryMapper;
 import com.grash.model.AssetCategory;
 import com.grash.repository.AssetCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AssetCategoryService {
     }
 
     public Collection<AssetCategory> getAll() {
-        return assetCategoryRepository.findAll();
+        return assetCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -50,7 +51,7 @@ public class AssetCategoryService {
     }
 
     public Collection<AssetCategory> findByCompanySettings(Long id) {
-        return assetCategoryRepository.findByCompanySettings_Id(id);
+        return assetCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
     }
 
     public boolean isAssetCategoryInCompany(AssetCategory assetCategory, long companyId, boolean optional) {

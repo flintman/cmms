@@ -6,6 +6,7 @@ import com.grash.mapper.PurchaseOrderCategoryMapper;
 import com.grash.model.PurchaseOrderCategory;
 import com.grash.repository.PurchaseOrderCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class PurchaseOrderCategoryService {
     }
 
     public Collection<PurchaseOrderCategory> getAll() {
-        return purchaseOrderCategoryRepository.findAll();
+        return purchaseOrderCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -49,7 +50,7 @@ public class PurchaseOrderCategoryService {
     }
 
     public Collection<PurchaseOrderCategory> findByCompanySettings(Long id) {
-        return purchaseOrderCategoryRepository.findByCompanySettings_Id(id);
+        return purchaseOrderCategoryRepository.findByCompanySettings_IdOrderByNameAsc(id);
     }
 
 }

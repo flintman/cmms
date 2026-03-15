@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface PartCategoryRepository extends JpaRepository<PartCategory, Long> {
 
     Collection<PartCategory> findByCompanySettings_Id(Long id);
+    
+    Collection<PartCategory> findByCompanySettings_IdOrderByNameAsc(Long id);
 
     Optional<PartCategory> findByName(String name);
 

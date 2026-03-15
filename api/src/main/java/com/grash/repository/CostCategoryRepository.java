@@ -9,6 +9,8 @@ import java.util.Optional;
 public interface CostCategoryRepository extends JpaRepository<CostCategory, Long> {
 
     Collection<CostCategory> findByCompanySettings_Id(Long id);
+    
+    Collection<CostCategory> findByCompanySettings_IdOrderByNameAsc(Long id);
 
     Optional<CostCategory> findByNameIgnoreCaseAndCompanySettings_Id(String name, Long id);
 

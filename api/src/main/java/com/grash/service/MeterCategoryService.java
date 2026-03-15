@@ -6,6 +6,7 @@ import com.grash.mapper.MeterCategoryMapper;
 import com.grash.model.MeterCategory;
 import com.grash.repository.MeterCategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class MeterCategoryService {
     }
 
     public Collection<MeterCategory> getAll() {
-        return meterCategoryRepository.findAll();
+        return meterCategoryRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public void delete(Long id) {
@@ -52,7 +53,7 @@ public class MeterCategoryService {
     }
 
     public Collection<MeterCategory> findByCompany(Long id) {
-        return meterCategoryRepository.findByCompany_Id(id);
+        return meterCategoryRepository.findByCompany_IdOrderByNameAsc(id);
     }
 
     public Optional<MeterCategory> findByNameIgnoreCaseAndCompanySettings(String name, Long companySettingsId) {

@@ -11,6 +11,9 @@ import java.util.Optional;
 public interface MeterCategoryRepository extends JpaRepository<MeterCategory, Long> {
     @Query("SELECT m from MeterCategory m where m.companySettings.company.id = :x ")
     Collection<MeterCategory> findByCompany_Id(@Param("x") Long id);
+    
+    @Query("SELECT m from MeterCategory m where m.companySettings.company.id = :x ORDER BY m.name ASC")
+    Collection<MeterCategory> findByCompany_IdOrderByNameAsc(@Param("x") Long id);
 
     Optional<MeterCategory> findByName(String name);
 
