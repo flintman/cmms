@@ -18,6 +18,7 @@ import {
 } from 'src/utils/cancellableRequest';
 
 const basePath = 'assets';
+let latestAssetsSearchRequestId = 0;
 interface AssetState {
   assets: Page<AssetDTO>;
   assetsHierarchy: AssetRow[];
@@ -179,6 +180,7 @@ export const getAssets =
   (criteria: SearchCriteria): AppThunk =>
   async (dispatch) => {
     const { signal } = createCancellableRequest();
+    const requestId = ++latestAssetsSearchRequestId;
     try {
       dispatch(slice.actions.setLoadingGet({ loading: true }));
       const assets = await api.post<Page<AssetDTO>>(
@@ -186,12 +188,16 @@ export const getAssets =
         criteria,
         { signal }
       );
-      dispatch(slice.actions.getAssets({ assets }));
+      if (requestId === latestAssetsSearchRequestId) {
+        dispatch(slice.actions.getAssets({ assets }));
+      }
     } catch (error) {
       if (isAbortError(error)) return;
       throw error;
     } finally {
-      dispatch(slice.actions.setLoadingGet({ loading: false }));
+      if (requestId === latestAssetsSearchRequestId) {
+        dispatch(slice.actions.setLoadingGet({ loading: false }));
+      }
     }
   };
 export const getAssetsMini =
