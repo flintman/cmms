@@ -226,7 +226,7 @@ function Assets() {
 
   useEffect(() => {
     if (hasViewPermission(PermissionEntity.ASSETS)) {
-      handleReset(false);
+      dispatch(resetAssetsHierarchy(pageable, false));
       dispatch(getAssetChildren(0, pageable));
     }
   }, [pageable]);
@@ -737,7 +737,19 @@ function Assets() {
     name: Yup.string().required(t('required_asset_name'))
   };
   const handleReset = (callApi: boolean) => {
-    dispatch(resetAssetsHierarchy(callApi));
+    if (!callApi) {
+      dispatch(resetAssetsHierarchy(pageable, false));
+      return;
+    }
+
+    const resetPageable: Pageable = {
+      ...pageable,
+      page: 0,
+      size: PAGE_SIZE
+    };
+
+    // Trigger reload through the pageable effect with initial hierarchy size.
+    setPageable(resetPageable);
   };
 
   const renderAssetAddModal = () => (
