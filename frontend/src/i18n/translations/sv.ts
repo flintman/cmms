@@ -449,6 +449,7 @@ const locale = {
   additional_information: 'Ytterligare information',
   structure: 'Strukturera',
   parent_asset: 'Modertillgång',
+  child_assets: 'Undertillgångar',
   asset_create_success: 'Tillgången har skapats',
   asset_create_failure: 'Det gick inte att skapa tillgången',
   additional_workers_description: 'Välj ytterligare arbetare',

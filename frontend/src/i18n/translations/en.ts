@@ -443,6 +443,7 @@ const locale = {
   additional_information: 'Additional Information',
   structure: 'Structure',
   parent_asset: 'Parent Asset',
+  child_assets: 'Child Asset',
   asset_create_success: 'The Asset has been created successfully',
   asset_create_failure: "The Asset couldn't be created",
   additional_workers_description: 'Select additional workers',

@@ -22,7 +22,8 @@ import * as Yup from 'yup';
 import {
   deleteAsset,
   editAsset,
-  getAssetDetails
+  getAssetDetails,
+  getAssetChildAssets
 } from '../../../../slices/asset';
 import { useDispatch, useSelector } from '../../../../store';
 import { CustomSnackBarContext } from '../../../../contexts/CustomSnackBarContext';
@@ -50,6 +51,7 @@ const ShowAsset = ({}: PropsType) => {
   const { showSnackBar } = useContext(CustomSnackBarContext);
   const { assetInfos, loadingGet } = useSelector((state) => state.assets);
   const asset: AssetDTO = assetInfos[assetId]?.asset;
+  const childAssets = assetInfos[assetId]?.childAssets;
   const navigate = useNavigate();
   const [openDelete, setOpenDelete] = useState<boolean>(false);
   const {
@@ -61,7 +63,11 @@ const ShowAsset = ({}: PropsType) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isNumeric(assetId)) dispatch(getAssetDetails(Number(assetId)));
+    if (isNumeric(assetId)) {
+      const numericId = Number(assetId);
+      dispatch(getAssetDetails(numericId));
+      dispatch(getAssetChildAssets(numericId));
+    }
   }, [assetId]);
 
   const handleOpenUpdateModal = () => setOpenUpdateModal(true);
@@ -432,7 +438,7 @@ const ShowAsset = ({}: PropsType) => {
       >
         {isNumeric(assetId) ? (
           tabIndex === 0 ? (
-            <AssetDetails asset={asset} loading={loadingGet} />
+            <AssetDetails asset={asset} loading={loadingGet} childAssets={childAssets} />
           ) : tabIndex === 1 ? (
             <AssetWorkOrders asset={asset} />
           ) : tabIndex === 2 ? (

@@ -567,6 +567,7 @@ const frJSON = {
   additional_information: 'Informations supplémentaires',
   structure: 'Structure',
   parent_asset: 'Équipement parent',
+  child_assets: 'Équipements enfants',
   asset_create_success: "L'équipement a été créé avec succès",
   asset_create_failure: "L'équipement n'a pas pu être créé",
   additional_workers_description:

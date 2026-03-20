@@ -22,7 +22,7 @@ let latestAssetsSearchRequestId = 0;
 interface AssetState {
   assets: Page<AssetDTO>;
   assetsHierarchy: AssetRow[];
-  assetInfos: { [key: number]: { asset?: AssetDTO; workOrders: WorkOrder[] } };
+  assetInfos: { [key: number]: { asset?: AssetDTO; workOrders: WorkOrder[]; childAssets?: AssetDTO[] } };
   assetsByLocation: { [key: number]: AssetDTO[] };
   assetsByPart: { [key: number]: AssetDTO[] };
   assetsMini: AssetMiniDTO[];
@@ -153,6 +153,15 @@ const slice = createSlice({
       if (state.assetInfos[id]) {
         state.assetInfos[id] = { ...state.assetInfos[id], workOrders };
       } else state.assetInfos[id] = { workOrders };
+    },
+    getAssetChildAssets(
+      state: AssetState,
+      action: PayloadAction<{ childAssets: AssetDTO[]; id: number }>
+    ) {
+      const { childAssets, id } = action.payload;
+      if (state.assetInfos[id]) {
+        state.assetInfos[id] = { ...state.assetInfos[id], childAssets };
+      } else state.assetInfos[id] = { childAssets, workOrders: [] };
     },
     getAssetsByLocation(
       state: AssetState,
@@ -335,6 +344,28 @@ export const getAssetsByPart =
         assets
       })
     );
+  };
+
+export const getAssetChildAssets =
+  (id: number): AppThunk =>
+  async (dispatch) => {
+    try {
+      const childAssets = await api.get<AssetDTO[]>(`${basePath}/children/${id}`);
+      dispatch(
+        slice.actions.getAssetChildAssets({
+          id,
+          childAssets
+        })
+      );
+    } catch (error) {
+      // Silently fail if no children found
+      dispatch(
+        slice.actions.getAssetChildAssets({
+          id,
+          childAssets: []
+        })
+      );
+    }
   };
 
 export const resetAssetsHierarchy =

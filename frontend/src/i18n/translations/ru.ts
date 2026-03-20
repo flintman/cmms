@@ -458,6 +458,7 @@ const ruJSON = {
   additional_information: 'Дополнительная информация',
   structure: 'Структура',
   parent_asset: 'Родительский актив',
+  child_assets: 'Дочерние активы',
 
   asset_create_success: 'Актив успешно создан',
   asset_create_failure: 'Не удалось создать актив',

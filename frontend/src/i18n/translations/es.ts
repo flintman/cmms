@@ -466,6 +466,7 @@ const esJSON = {
   additional_information: 'Información adicional',
   structure: 'Estructura',
   parent_asset: 'Activo padre',
+  child_assets: 'Activos hijo',
   asset_create_success: 'El activo ha sido creado exitosamente',
   asset_create_failure: 'El activo no pudo ser creado',
   additional_workers_description: 'Seleccione trabajadores adicionales',

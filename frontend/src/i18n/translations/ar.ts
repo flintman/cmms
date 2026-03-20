@@ -435,6 +435,7 @@ const locale = {
   additional_information: 'معلومات إضافية',
   structure: 'بناء',
   parent_asset: 'الأصول الأم',
+  child_assets: 'الأصول الفرعية',
   asset_create_success: 'تم إنشاء الأصل بنجاح',
   asset_create_failure: 'لم يتمكن من إنشاء الأصل',
   additional_workers_description: 'اختيار العمال الإضافيين',

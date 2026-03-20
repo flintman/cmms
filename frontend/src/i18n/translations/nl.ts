@@ -460,6 +460,7 @@ const locale = {
   additional_information: 'Aanvullende informatie',
   structure: 'Structuur',
   parent_asset: 'Hoofdasset',
+  child_assets: 'Onderliggende assets',
   asset_create_success: 'Het asset is succesvol aangemaakt',
   asset_create_failure: 'Het asset kon niet worden aangemaakt',
   additional_workers_description: 'Selecteer aanvullende medewerkers',

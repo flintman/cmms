@@ -474,6 +474,7 @@ const deJSON = {
   additional_information: 'Zusätzliche Informationen',
   structure: 'Struktur',
   parent_asset: 'Übergeordnete Anlage',
+  child_assets: 'Untergeordnete Anlagen',
   asset_create_success: 'Die Anlage wurde erfolgreich erstellt',
   asset_create_failure: 'Die Anlage konnte nicht erstellt werden',
   additional_workers_description: 'Zusätzliche Arbeiter auswählen',

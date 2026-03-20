@@ -451,6 +451,7 @@ const plJSON = {
   additional_information: 'Dodatkowe informacje',
   structure: 'Struktura',
   parent_asset: 'Zasób nadrzędny',
+  child_assets: 'Zasoby podrzędne',
   asset_create_success: 'Zasób został pomyślnie utworzony',
   asset_create_failure: 'Nie udało się utworzyć zasobu',
   additional_workers_description: 'Wybierz dodatkowych pracowników',

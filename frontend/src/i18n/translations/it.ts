@@ -464,6 +464,7 @@ const locale = {
   additional_information: 'Informazioni aggiuntive',
   structure: 'Struttura',
   parent_asset: 'Risorsa principale',
+  child_assets: 'Risorse figlie',
   asset_create_success: 'La risorsa è stata creata correttamente',
   asset_create_failure: 'Impossibile creare la risorsa',
   additional_workers_description: 'Seleziona lavoratori aggiuntivi',

@@ -32,11 +32,12 @@ import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import { PlanFeature } from '../../../../models/owns/subscriptionPlan';
 import * as React from 'react';
 import useAuth from '../../../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 
 interface PropsType {
   asset: AssetDTO;
   loading: boolean;
+  childAssets?: AssetDTO[];
 }
 
 const LabelWrapper = styled(Box)(
@@ -49,7 +50,7 @@ const LabelWrapper = styled(Box)(
     line-height: 1;
   `
 );
-const AssetDetails = ({ asset, loading }: PropsType) => {
+const AssetDetails = ({ asset, loading, childAssets }: PropsType) => {
   const { t }: { t: any } = useTranslation();
   const theme = useTheme();
   const { hasCreatePermission } = useAuth();
@@ -128,7 +129,7 @@ const AssetDetails = ({ asset, loading }: PropsType) => {
             <Stack spacing={1} direction="row">
               {values.map((value, index) => (
                 <Stack key={value.id} spacing={1} direction="row">
-                  <Link href={getHref(value)} variant="h6">
+                  <Link component={RouterLink} to={getHref(value)} variant="h6">
                     {getValueLabel(value)}
                   </Link>
                   {index !== values.length - 1 && (
@@ -205,6 +206,31 @@ const AssetDetails = ({ asset, loading }: PropsType) => {
                   value={field.value}
                 />
               ))}
+              {asset?.parentAsset && (
+                <Grid item xs={12}>
+                  <Stack spacing={5} direction="row">
+                    <Typography variant="h6" fontWeight="bold">
+                      {t('parent_asset')}
+                    </Typography>
+                    <Link
+                      component={RouterLink}
+                      to={`/app/assets/${asset.parentAsset.id}/details`}
+                      variant="h6"
+                    >
+                      {asset.parentAsset.name}
+                    </Link>
+                  </Stack>
+                  <Divider sx={{ mt: 1 }} />
+                </Grid>
+              )}
+              {childAssets && childAssets.length > 0 && (
+                <ListField
+                  values={childAssets}
+                  label={t('child_assets')}
+                  getHref={(child: AssetDTO) => `/app/assets/${child.id}/details`}
+                  getValueLabel={(child: AssetDTO) => child.name}
+                />
+              )}
               {asset?.primaryUser && (
                 <Grid item xs={12}>
                   <Stack spacing={5} direction="row">
@@ -212,8 +238,9 @@ const AssetDetails = ({ asset, loading }: PropsType) => {
                       {t('primary_worker')}
                     </Typography>
                     <Link
+                      component={RouterLink}
                       key={asset.primaryUser.id}
-                      href={`/app/people-teams/people/${asset.primaryUser.id}`}
+                      to={`/app/people-teams/people/${asset.primaryUser.id}`}
                       variant="h6"
                     >
                       {`${asset.primaryUser.firstName} ${asset.primaryUser.lastName}`}
@@ -229,7 +256,8 @@ const AssetDetails = ({ asset, loading }: PropsType) => {
                       {t('location')}
                     </Typography>
                     <Link
-                      href={`/app/locations/${asset.location.id}`}
+                      component={RouterLink}
+                      to={`/app/locations/${asset.location.id}`}
                       variant="h6"
                     >
                       {asset.location.name}

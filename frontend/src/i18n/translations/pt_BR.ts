@@ -473,6 +473,7 @@ const ptBRJSON = {
   additional_information: 'Informações Adicionais',
   structure: 'Estrutura',
   parent_asset: 'Ativo Pai',
+  child_assets: 'Ativos Filhos',
   asset_create_success: 'O Ativo foi criado com sucesso',
   asset_create_failure: 'O Ativo não pôde ser criado',
   additional_workers_description: 'Selecionar trabalhadores adicionais',

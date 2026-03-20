@@ -452,6 +452,7 @@ const locale = {
   additional_information: 'Dodatne informacije',
   structure: 'Struktura',
   parent_asset: 'Nadređena imovina',
+  child_assets: 'Podređena imovina',
   asset_create_success: 'Imovina je uspješno kreirana',
   asset_create_failure: 'Imovina nije mogla biti kreirana',
   additional_workers_description: 'Odaberite dodatne radnike',

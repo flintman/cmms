@@ -441,6 +441,7 @@ const trJSON = {
   additional_information: 'Ek Bilgiler',
   structure: 'Yapı',
   parent_asset: 'Ana Varlık',
+  child_assets: 'Alt Varlıklar',
   asset_create_success: 'Varlık başarıyla oluşturuldu',
   asset_create_failure: 'Varlık oluşturulamadı',
   additional_workers_description: 'Ek çalışanları seçin',
