@@ -387,6 +387,8 @@ const frJSON = {
   completed_by: 'Terminé par',
   time: 'Temps',
   save: 'Sauvegarder',
+  latest_first: 'Le plus récent en premier',
+  oldest_first: 'Le plus ancien en premier',
   customers: 'Prestataires',
   no_labor: "Aucun coût de main-d'œuvre n'a encore été ajouté. ",
   not_assigned: 'Non attribué',

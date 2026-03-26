@@ -276,6 +276,8 @@ const locale = {
   completed_by: 'Slutförd av',
   time: 'Tid',
   save: 'Spara',
+  latest_first: 'Nyaste först',
+  oldest_first: 'Äldsta först',
   customers: 'Entreprenörer',
   no_labor:
     'Inga arbetskostnader har lagts till ännu. De visas här när en användare loggar tid och har en timpris lagrad i {{shortBrandName}}.',

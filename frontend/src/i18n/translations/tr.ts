@@ -271,6 +271,8 @@ const trJSON = {
   completed_by: 'Tarafından tamamlanmıştır',
   time: 'Zaman',
   save: 'Kaydet',
+  latest_first: 'En Yeni Önce',
+  oldest_first: 'En Eski Önce',
   customers: 'Yükleniciler',
   no_labor: 'Henüz işçilik maliyeti eklenmemiştir. ',
   not_assigned: 'Atanmadı',

@@ -288,6 +288,8 @@ const locale = {
   completed_by: 'Befejezte',
   time: 'Idő',
   save: 'Mentés',
+  latest_first: 'Legújabb először',
+  oldest_first: 'Legrégebbi először',
   customers: 'Vállalkozók',
   no_labor:
     'Még nincsenek munkaerőköltségek hozzáadva. Itt fognak megjelenni, amikor egy felhasználó időt naplóz és órabére van mentve a {{brandName}}-ben.',

@@ -286,6 +286,8 @@ const deJSON = {
   completed_by: 'Abgeschlossen von',
   time: 'Zeit',
   save: 'Speichern',
+  latest_first: 'Neueste zuerst',
+  oldest_first: 'Älteste zuerst',
   customers: 'Auftragnehmer',
   no_labor:
     'Es wurden noch keine Arbeitskosten hinzugefügt. Sie werden hier angezeigt, wenn ein Benutzer Zeit protokolliert und ein Stundensatz in {{shortBrandName}} gespeichert ist.',

@@ -272,6 +272,8 @@ const locale = {
   completed_by: 'Completed By',
   time: 'Time',
   save: 'Save',
+  latest_first: 'Latest First',
+  oldest_first: 'Oldest First',
   customers: 'Contractors',
   no_labor:
     "No labor costs have been added yet. They'll show up here when a user logs time and has an hourly rate stored in {{shortBrandName}}.",

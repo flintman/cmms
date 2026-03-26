@@ -281,6 +281,8 @@ const locale = {
   completed_by: 'Završio/la',
   time: 'Vrijeme',
   save: 'Spremi',
+  latest_first: 'Najnovije prvo',
+  oldest_first: 'Najstarije prvo',
   customers: 'Izvođači',
   no_labor:
     'Troškovi rada još nisu dodani. Pojavit će se ovdje kada korisnik evidentira vrijeme i ima pohranjenu satnicu u {{shortBrandName}}.',

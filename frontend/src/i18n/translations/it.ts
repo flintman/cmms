@@ -281,6 +281,8 @@ const locale = {
   completed_by: 'Completato da',
   time: 'Tempo',
   save: 'Salva',
+  latest_first: 'Più recente per primo',
+  oldest_first: 'Più vecchio per primo',
   customers: 'Appaltatori',
   no_labor:
     'Non sono ancora stati aggiunti costi di manodopera. Verranno visualizzati qui quando un utente registra il tempo e ha una tariffa oraria memorizzata in {{shortBrandName}}.',

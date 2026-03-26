@@ -291,6 +291,8 @@ const ptBRJSON = {
   completed_by: 'Concluído por',
   time: 'Tempo',
   save: 'Salvar',
+  latest_first: 'Mais Recente Primeiro',
+  oldest_first: 'Mais Antigo Primeiro',
   customers: 'Contratantes',
   no_labor:
     'Nenhum custo de mão de obra foi adicionado ainda. Eles aparecerão aqui quando um usuário registrar o tempo e tiver uma taxa horária armazenada no {{shortBrandName}}.',

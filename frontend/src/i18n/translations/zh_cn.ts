@@ -258,6 +258,8 @@ const locale = {
   completed_by: '完成者',
   time: '时间',
   save: '保存',
+  latest_first: '最新优先',
+  oldest_first: '最旧优先',
   customers: '承包商',
   no_labor:
     '尚未添加劳动成本。当用户记录时间并在{{brandName}}中保存小时费率时，它们将出现在这里。',

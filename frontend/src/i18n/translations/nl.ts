@@ -284,6 +284,8 @@ const locale = {
   completed_by: 'Voltooid door',
   time: 'Tijd',
   save: 'Opslaan',
+  latest_first: 'Nieuwste eerst',
+  oldest_first: 'Oudste eerst',
   customers: 'Aannemers',
   no_labor:
     'Er zijn nog geen arbeidskosten toegevoegd. Deze verschijnen hier zodra een gebruiker tijd registreert en een uurtarief in Atlas heeft opgeslagen.',

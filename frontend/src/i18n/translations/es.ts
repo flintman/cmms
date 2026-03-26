@@ -284,6 +284,8 @@ const esJSON = {
   completed_by: 'Completado por',
   time: 'Tiempo',
   save: 'Guardar',
+  latest_first: 'El más reciente primero',
+  oldest_first: 'El más antiguo primero',
   customers: 'Contratista',
   no_labor:
     'Aún no se han agregado costos. Aparecerán aquí cuando un usuario registre su tiempo y tenga una tarifa por hora almacenada en {{shortBrandName}}.',

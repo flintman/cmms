@@ -278,6 +278,8 @@ const plJSON = {
   completed_by: 'Wykonane przez',
   time: 'Czas',
   save: 'Zapisz',
+  latest_first: 'Najnowsze najpierw',
+  oldest_first: 'Najstarsze najpierw',
   customers: 'Kontrahenci',
   no_labor:
     'Koszty pracy nie zostały jeszcze dodane. Pojawią się tutaj, gdy użytkownik zarejestruje czas i posiada ustawioną stawkę godzinową w {{shortBrandName}}.',
