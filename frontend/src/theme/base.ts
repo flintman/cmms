@@ -4,6 +4,8 @@ import { Theme } from '@mui/material';
 import { PureLightTheme } from './schemes/PureLightTheme';
 import { GreyGooseTheme } from './schemes/GreyGooseTheme';
 import { PurpleFlowTheme } from './schemes/PurpleFlowTheme';
+import { SkyView } from './schemes/SkyView';
+import { PureDarkTheme } from './schemes/PureDarkTheme';
 
 export function themeCreator(theme: string): Theme {
   return themeMap[theme];
@@ -253,5 +255,7 @@ declare module '@mui/material/styles' {
 const themeMap: { [key: string]: Theme } = {
   PureLightTheme,
   GreyGooseTheme,
-  PurpleFlowTheme
+  PurpleFlowTheme,
+  SkyView,
+  PureDarkTheme
 };
