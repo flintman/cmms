@@ -1335,7 +1335,7 @@ export const ElegantNightTheme = createTheme({
           color: '#E2E8F0'
         },
         h6: {
-          color: '#E2E8F0'
+          color: '#E2E8F0 !important'
         },
         subtitle1: {
           color: '#CBD5E1'

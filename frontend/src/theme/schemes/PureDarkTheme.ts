@@ -1233,6 +1233,24 @@ export const PureDarkTheme = createTheme({
           fontSize: 17,
           lineHeight: 1.7
         },
+        h1: {
+          color: '#E5E7EB'
+        },
+        h2: {
+          color: '#E5E7EB'
+        },
+        h3: {
+          color: '#E5E7EB'
+        },
+        h4: {
+          color: '#D1D5DB'
+        },
+        h5: {
+          color: '#D1D5DB'
+        },
+        h6: {
+          color: '#E2E8F0 !important'
+        },
         subtitle1: {
           color: '#D1D5DB'
         },
@@ -1240,7 +1258,7 @@ export const PureDarkTheme = createTheme({
           color: '#D1D5DB'
         },
         body1: {
-          color: '#E5E7EB'
+          color: '#E5E7EB !important'
         },
         body2: {
           color: '#D1D5DB'
@@ -1259,28 +1277,33 @@ export const PureDarkTheme = createTheme({
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
     h1: {
       fontWeight: 700,
-      fontSize: 35
+      fontSize: 35,
+      color: '#E5E7EB'
     },
     h2: {
       fontWeight: 700,
-      fontSize: 30
+      fontSize: 30,
+      color: '#E5E7EB'
     },
     h3: {
       fontWeight: 700,
       fontSize: 25,
       lineHeight: 1.4,
-      color: colors.alpha.black[100]
+      color: '#E5E7EB'
     },
     h4: {
       fontWeight: 700,
-      fontSize: 16
+      fontSize: 16,
+      color: '#D1D5DB'
     },
     h5: {
       fontWeight: 700,
-      fontSize: 14
+      fontSize: 14,
+      color: '#D1D5DB'
     },
     h6: {
-      fontSize: 15
+      fontSize: 15,
+      color: '#E2E8F0'
     },
     body1: {
       fontSize: 14
