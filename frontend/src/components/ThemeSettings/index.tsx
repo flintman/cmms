@@ -154,6 +154,16 @@ const ColorSchemeWrapper = styled(Box)(
             background: #8B5CF6;
         }
     }
+
+    &.theme3 {
+        .primary {
+            background: #06B6D4;
+        }
+
+        .secondary {
+            background: #6366F1;
+        }
+    }
   `
 );
 
@@ -340,6 +350,24 @@ const ThemeSettings: FC = () => {
                     </CheckSelected>
                   )}
                   <ColorSchemeWrapper className="colorSchemeWrapper theme2">
+                    <Box className="primary" />
+                    <Box className="secondary" />
+                  </ColorSchemeWrapper>
+                </ButtonWrapper>
+              </Tooltip>
+              <Tooltip placement="left" title="Elegant Night" arrow>
+                <ButtonWrapper
+                  className={theme === 'ElegantNightTheme' ? 'active' : ''}
+                  onClick={() => {
+                    changeTheme('ElegantNightTheme');
+                  }}
+                >
+                  {theme === 'ElegantNightTheme' && (
+                    <CheckSelected>
+                      <CheckTwoToneIcon />
+                    </CheckSelected>
+                  )}
+                  <ColorSchemeWrapper className="colorSchemeWrapper theme3">
                     <Box className="primary" />
                     <Box className="secondary" />
                   </ColorSchemeWrapper>

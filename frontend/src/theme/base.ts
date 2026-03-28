@@ -6,6 +6,7 @@ import { GreyGooseTheme } from './schemes/GreyGooseTheme';
 import { PurpleFlowTheme } from './schemes/PurpleFlowTheme';
 import { SkyView } from './schemes/SkyView';
 import { PureDarkTheme } from './schemes/PureDarkTheme';
+import { ElegantNightTheme } from './schemes/ElegantNightTheme';
 
 export function themeCreator(theme: string): Theme {
   return themeMap[theme];
@@ -257,5 +258,6 @@ const themeMap: { [key: string]: Theme } = {
   GreyGooseTheme,
   PurpleFlowTheme,
   SkyView,
-  PureDarkTheme
+  PureDarkTheme,
+  ElegantNightTheme
 };
