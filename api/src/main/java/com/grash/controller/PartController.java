@@ -1,5 +1,6 @@
 package com.grash.controller;
 
+import com.grash.advancedsearch.FilterField;
 import com.grash.advancedsearch.SearchCriteria;
 import com.grash.dto.PartMiniDTO;
 import com.grash.dto.PartPatchDTO;
@@ -31,6 +32,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,6 +53,7 @@ public class PartController {
     @PostMapping("/search")
     @PreAuthorize("permitAll()")
     public ResponseEntity<Page<PartShowDTO>> search(@Parameter(description = "Search criteria for filtering parts") @RequestBody SearchCriteria searchCriteria,
+                                                    @RequestParam(defaultValue = "false") boolean inStockOnly,
                                                     HttpServletRequest req) {
         User user = userService.whoami(req);
         if (user.getRole().getRoleType().equals(RoleType.ROLE_CLIENT)) {
@@ -62,6 +65,14 @@ public class PartController {
                     searchCriteria.filterCreatedBy(user);
                 }
             } else throw new CustomException("Access Denied", HttpStatus.FORBIDDEN);
+        }
+        if (inStockOnly) {
+            searchCriteria.getFilterFields().add(FilterField.builder()
+                    .field("quantity")
+                    .value(0)
+                    .operation("gt")
+                    .values(new ArrayList<>())
+                    .build());
         }
         return ResponseEntity.ok(partService.findBySearchCriteria(searchCriteria));
     }

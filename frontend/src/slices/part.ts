@@ -83,11 +83,11 @@ const slice = createSlice({
 export const reducer = slice.reducer;
 
 export const getParts =
-  (criteria: SearchCriteria): AppThunk =>
+  (criteria: SearchCriteria, inStockOnly: boolean = false): AppThunk =>
     async (dispatch) => {
       try {
         dispatch(slice.actions.setLoadingGet({ loading: true }));
-        const parts = await api.post<Page<Part>>(`${basePath}/search`, criteria);
+        const parts = await api.post<Page<Part>>(`${basePath}/search?inStockOnly=${inStockOnly}`, criteria);
         dispatch(slice.actions.getParts({ parts }));
       } finally {
         dispatch(slice.actions.setLoadingGet({ loading: false }));

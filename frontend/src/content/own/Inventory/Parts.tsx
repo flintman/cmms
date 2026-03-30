@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   CardMedia,
   CircularProgress,
@@ -17,6 +18,7 @@ import {
   Stack,
   Tab,
   Tabs,
+  Tooltip,
   Typography,
   useTheme
 } from '@mui/material';
@@ -138,6 +140,7 @@ const Parts = ({ setAction }: PropsType) => {
   const [openDelete, setOpenDelete] = useState<boolean>(false);
   const [openAddModal, setOpenAddModal] = useState<boolean>(false);
   const [currentPart, setCurrentPart] = useState<Part>();
+  const [inStockOnly, setInStockOnly] = useState<boolean>(true);
   const {
     getFilteredFields,
     hasViewPermission,
@@ -220,8 +223,8 @@ const Parts = ({ setAction }: PropsType) => {
   }, [partId]);
 
   useEffect(() => {
-    dispatch(getParts(criteria));
-  }, [criteria]);
+    dispatch(getParts(criteria, inStockOnly));
+  }, [criteria, inStockOnly]);
 
   //see changes in ui on edit
   useEffect(() => {
@@ -718,7 +721,19 @@ const Parts = ({ setAction }: PropsType) => {
             <Tab key={tab.value} label={tab.label} value={tab.value} />
           ))}
         </Tabs>
-        <SearchInput onChange={debouncedQueryChange} />
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Tooltip title={inStockOnly ? t('showing_in_stock_only') : t('showing_all_parts')}>
+            <Button
+              size="small"
+              variant={inStockOnly ? 'contained' : 'outlined'}
+              color="primary"
+              onClick={() => setInStockOnly((prev) => !prev)}
+            >
+              {inStockOnly ? t('in_stock') : t('all_parts')}
+            </Button>
+          </Tooltip>
+          <SearchInput onChange={debouncedQueryChange} />
+        </Stack>
         <IconButton onClick={handleOpenMenu} color="primary">
           <MoreVertTwoToneIcon />
         </IconButton>
