@@ -15,6 +15,7 @@ import {
   Tab,
   Tabs,
   TextField,
+  Tooltip,
   Typography
 } from '@mui/material';
 import { ChangeEvent, useEffect, useState } from 'react';
@@ -41,6 +42,7 @@ export default function SelectParts({ onChange, selected }: SelectPartsProps) {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [searchString, setSearchString] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [inStockOnly, setInStockOnly] = useState<boolean>(true);
   const handleTabsChange = (_event: ChangeEvent<{}>, value: string): void => {
     setCurrentTab(value);
   };
@@ -114,9 +116,23 @@ export default function SelectParts({ onChange, selected }: SelectPartsProps) {
           </Tabs>
           {currentTab === 'parts' && (
             <Box>
-              <TextField sx={{mb:1}} value={searchString} onChange={(event)=>setSearchString(event.target.value)} placeholder={t('search')} label={t('search')}/>
+              <Box display="flex" alignItems="center" gap={1} sx={{ mb: 1 }}>
+                <TextField sx={{ flex: 1 }} value={searchString} onChange={(event) => setSearchString(event.target.value)} placeholder={t('search')} label={t('search')} />
+                <Tooltip title={inStockOnly ? t('showing_in_stock_only') : t('showing_all_parts')}>
+                  <Button
+                    size="small"
+                    variant={inStockOnly ? 'contained' : 'outlined'}
+                    color="primary"
+                    onClick={() => setInStockOnly((prev) => !prev)}
+                  >
+                    {inStockOnly ? t('in_stock') : t('all_parts')}
+                  </Button>
+                </Tooltip>
+              </Box>
               <FormGroup>
-                {partsMini.filter(part=>part.name.toLowerCase().includes(searchString.toLowerCase())).map((part) => (
+                {partsMini
+                  .filter((part) => (!inStockOnly || part.quantity > 0) && part.name.toLowerCase().includes(searchString.toLowerCase()))
+                  .map((part) => (
                   <FormControlLabel
                     onChange={(event, checked) => {
                       if (checked) {

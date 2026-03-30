@@ -26,4 +26,5 @@ public class PartMiniDTO {
     
     @Schema(description = "Indicates whether this is a non-stock part")
     private boolean nonStock;
+    private double quantity;
 }

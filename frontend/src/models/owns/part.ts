@@ -33,4 +33,5 @@ export interface PartMiniDTO {
   id: number;
   cost: number;
   description: string;
+  quantity: number;
 }
