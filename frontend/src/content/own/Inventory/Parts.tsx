@@ -63,6 +63,7 @@ import {
 } from '../../../utils/overall';
 import { SearchCriteria, SortDirection } from '../../../models/owns/page';
 import { useExport } from '../../../hooks/useExport';
+import api from '../../../utils/api';
 import MoreVertTwoToneIcon from '@mui/icons-material/MoreVertTwoTone';
 import { PermissionEntity } from '../../../models/owns/role';
 import SearchInput from '../components/SearchInput';
@@ -151,6 +152,7 @@ const Parts = ({ setAction }: PropsType) => {
   const dispatch = useDispatch();
   const { showSnackBar } = useContext(CustomSnackBarContext);
   const { exportEntity, loadingExport } = useExport();
+  const [loadingLocationExport, setLoadingLocationExport] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -170,6 +172,87 @@ const Parts = ({ setAction }: PropsType) => {
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleExportByLocation = async () => {
+    setLoadingLocationExport(true);
+    handleCloseMenu();
+    try {
+      const [allParts, allStocks] = await Promise.all([
+        api.get<any[]>('parts/mini'),
+        api.get<any[]>('part-stocks/company')
+      ]);
+
+      // Collect all unique location names in alphabetical order
+      const locationNames: string[] = Array.from(
+        new Set(allStocks.map((s: any) => s.location?.name ?? 'Unknown'))
+      ).sort();
+
+      // Sort parts:
+      //  Group 0: any individual location (main shop or satellite) has qty=0 AND minQty>0
+      //  Group 1: total qty > 0 and no location is below minimum
+      //  Group 2: everything else
+      // Within each group: name asc
+      const getGroup = (part: any, stocks: any[]): number => {
+        const mainShopBelowMin = part.quantity === 0 && part.minQuantity > 0;
+        const stockBelowMin = stocks.some((s: any) => s.quantity === 0 && s.minQuantity > 0);
+        if (mainShopBelowMin || stockBelowMin) return 0;
+        const total = part.quantity + stocks.reduce((sum: number, s: any) => sum + s.quantity, 0);
+        return total > 0 ? 1 : 2;
+      };
+      const stocksById = new Map<number, any[]>();
+      for (const s of allStocks) {
+        const arr = stocksById.get(s.partId) ?? [];
+        arr.push(s);
+        stocksById.set(s.partId, arr);
+      }
+      const sortedParts = [...allParts].sort((a, b) => {
+        const ga = getGroup(a, stocksById.get(a.id) ?? []);
+        const gb = getGroup(b, stocksById.get(b.id) ?? []);
+        if (ga !== gb) return ga - gb;
+        return (a.name ?? '').localeCompare(b.name ?? '');
+      });
+
+      // Build header row — each location gets a Qty + Min Qty column pair
+      const locationHeaders = locationNames.flatMap((n) => [`${n} Qty`, `${n} Min Qty`]);
+      const header = ['ID', 'Part Name', 'Description', 'Unit', 'Main Location Qty', 'Main Location Min Qty', ...locationHeaders, 'Total'];
+
+      // Build data rows
+      const rows = sortedParts.map((part: any) => {
+        const partStocks = stocksById.get(part.id) ?? [];
+        const locationCols = locationNames.flatMap((locName) => {
+          const stock = partStocks.find((s: any) => (s.location?.name ?? 'Unknown') === locName);
+          return [String(stock ? stock.quantity : 0), String(stock ? stock.minQuantity : 0)];
+        });
+        const total = part.quantity + partStocks.reduce((sum: number, s: any) => sum + s.quantity, 0);
+        return [
+          String(part.id),
+          part.name,
+          part.description ?? '',
+          part.unit ?? '',
+          String(part.quantity),
+          String(part.minQuantity ?? 0),
+          ...locationCols,
+          String(total)
+        ];
+      });
+
+      const csv = [header, ...rows]
+        .map((row) => row.map((cell) => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+        .join('\n');
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${crypto.randomUUID()} Parts by Location.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      showSnackBar(t('Export failed'), 'error');
+    } finally {
+      setLoadingLocationExport(false);
+    }
   };
 
   const handleOpenUpdate = () => {
@@ -685,6 +768,14 @@ const Parts = ({ setAction }: PropsType) => {
           <Stack spacing={2} direction="row">
             {loadingExport['parts'] && <CircularProgress size="1rem" />}
             <Typography>{t('to_export')}</Typography>
+          </Stack>
+        </MenuItem>
+      )}
+      {hasViewOtherPermission(PermissionEntity.PARTS_AND_MULTIPARTS) && (
+        <MenuItem disabled={loadingLocationExport} onClick={handleExportByLocation}>
+          <Stack spacing={2} direction="row">
+            {loadingLocationExport && <CircularProgress size="1rem" />}
+            <Typography>{t('export_inventory_by_location')}</Typography>
           </Stack>
         </MenuItem>
       )}

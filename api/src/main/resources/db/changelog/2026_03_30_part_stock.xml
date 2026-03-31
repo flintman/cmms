@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2026_03_30_create_part_stock_table" author="custom">
+        <createTable tableName="part_stock">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="part_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="DOUBLE PRECISION" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="min_quantity" type="DOUBLE PRECISION" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="BIGINT"/>
+            <column name="created_at" type="TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP"/>
+            <column name="is_demo" type="BOOLEAN" defaultValueBoolean="false"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_fk_part" author="custom">
+        <addForeignKeyConstraint
+                baseTableName="part_stock"
+                baseColumnNames="part_id"
+                referencedTableName="part"
+                referencedColumnNames="id"
+                constraintName="fk_part_stock_part"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_fk_location" author="custom">
+        <addForeignKeyConstraint
+                baseTableName="part_stock"
+                baseColumnNames="location_id"
+                referencedTableName="location"
+                referencedColumnNames="id"
+                constraintName="fk_part_stock_location"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_fk_company" author="custom">
+        <addForeignKeyConstraint
+                baseTableName="part_stock"
+                baseColumnNames="company_id"
+                referencedTableName="company"
+                referencedColumnNames="id"
+                constraintName="fk_part_stock_company"
+                onDelete="CASCADE"/>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_unique_part_location" author="custom">
+        <addUniqueConstraint
+                tableName="part_stock"
+                columnNames="part_id, location_id"
+                constraintName="uq_part_stock_part_location"/>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_add_updated_by" author="custom">
+        <addColumn tableName="part_stock">
+            <column name="updated_by" type="BIGINT"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="2026_03_30_part_stock_seq" author="custom">
+        <createSequence sequenceName="part_stock_seq" startValue="1" incrementBy="50"/>
+    </changeSet>
+
+</databaseChangeLog>
