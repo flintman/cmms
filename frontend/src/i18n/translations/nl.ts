@@ -585,6 +585,8 @@ const locale = {
   stock_locations: 'Voorraadlocaties',
   export_csv: 'CSV exporteren',
   export_inventory_by_location: 'Voorraad exporteren per locatie',
+  restock_low_stock: 'Lage voorraad aanvullen',
+  no_low_stock_parts: 'Er zijn momenteel geen onderdelen onder de minimumhoeveelheid.',
   add_location_stock: 'Locatievoorraad toevoegen',
   edit_location_stock: 'Locatievoorraad bewerken',
   transfer_stock: 'Voorraad overdragen',

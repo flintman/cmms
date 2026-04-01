@@ -553,6 +553,8 @@ const locale = {
   stock_locations: 'مواقع المخزون',
   export_csv: 'تصدير CSV',
   export_inventory_by_location: 'تصدير المخزون حسب الموقع',
+  restock_low_stock: 'إعادة تخزين المخزون المنخفض',
+  no_low_stock_parts: 'لا توجد قطع حالياً تحت الحد الأدنى للكمية.',
   add_location_stock: 'إضافة مخزون الموقع',
   edit_location_stock: 'تعديل مخزون الموقع',
   transfer_stock: 'نقل المخزون',

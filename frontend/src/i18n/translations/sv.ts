@@ -576,6 +576,8 @@ const locale = {
   stock_locations: 'Lagerplatser',
   export_csv: 'Exportera CSV',
   export_inventory_by_location: 'Exportera inventarie per plats',
+  restock_low_stock: 'Fyll på lågt lager',
+  no_low_stock_parts: 'Inga delar är för närvarande under minsta antal.',
   add_location_stock: 'Lägg till lagerplats',
   edit_location_stock: 'Redigera lagerplats',
   transfer_stock: 'Flytta lager',

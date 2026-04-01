@@ -593,6 +593,8 @@ const esJSON = {
   stock_locations: 'Ubicaciones de stock',
   export_csv: 'Exportar CSV',
   export_inventory_by_location: 'Exportar inventario por ubicación',
+  restock_low_stock: 'Reabastecer stock bajo',
+  no_low_stock_parts: 'Actualmente no hay piezas por debajo de la cantidad mínima.',
   add_location_stock: 'Agregar stock por ubicación',
   edit_location_stock: 'Editar stock por ubicación',
   transfer_stock: 'Transferir stock',

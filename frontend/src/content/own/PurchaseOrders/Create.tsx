@@ -13,7 +13,7 @@ import Form from '../components/form';
 import * as Yup from 'yup';
 import { phoneRegExp } from '../../../utils/validators';
 import { formatSelect, formatSwitch } from '../../../utils/formatters';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { CustomSnackBarContext } from '../../../contexts/CustomSnackBarContext';
 import PermissionErrorMessage from '../components/PermissionErrorMessage';
 import useAuth from '../../../hooks/useAuth';
@@ -27,6 +27,8 @@ function CreatePurchaseOrder() {
   const { setTitle } = useContext(TitleContext);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+  const initialPartQuantities = (location.state as any)?.partQuantities ?? [];
   const { hasCreatePermission, hasFeature, hasViewPermission } = useAuth();
   const { showSnackBar } = useContext(CustomSnackBarContext);
   useEffect(() => {
@@ -241,7 +243,8 @@ function CreatePurchaseOrder() {
                   values={{
                     shippingDueDate: null,
                     additionalInfoDate: null,
-                    approveOnSubmit: false
+                    approveOnSubmit: false,
+                    partQuantities: initialPartQuantities
                   }}
                   onChange={({ field, e }) => {}}
                   onSubmit={async (values) => {

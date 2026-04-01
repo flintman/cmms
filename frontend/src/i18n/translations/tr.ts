@@ -554,6 +554,8 @@ const trJSON = {
   stock_locations: 'Stok konumları',
   export_csv: 'CSV dışa aktar',
   export_inventory_by_location: 'Konuma göre envanteri dışa aktar',
+  restock_low_stock: 'Düşük stoğu yenile',
+  no_low_stock_parts: 'Şu anda minimum miktarın altında olan parça yok.',
   add_location_stock: 'Konum stoğu ekle',
   edit_location_stock: 'Konum stoğunu düzenle',
   transfer_stock: 'Stok transfer et',

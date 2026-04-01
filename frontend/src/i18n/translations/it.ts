@@ -589,6 +589,8 @@ const locale = {
   stock_locations: 'Posizioni magazzino',
   export_csv: 'Esporta CSV',
   export_inventory_by_location: 'Esporta inventario per posizione',
+  restock_low_stock: 'Rifornire scorte basse',
+  no_low_stock_parts: 'Nessun pezzo è attualmente al di sotto della quantità minima.',
   add_location_stock: 'Aggiungi stock posizione',
   edit_location_stock: 'Modifica stock posizione',
   transfer_stock: 'Trasferisci stock',

@@ -565,6 +565,8 @@ const locale = {
   stock_locations: 'Stock Locations',
   export_csv: 'Export CSV',
   export_inventory_by_location: 'Export Inventory by Location',
+  restock_low_stock: 'Restock Low Stock',
+  no_low_stock_parts: 'No parts are currently below minimum quantity.',
   add_location_stock: 'Add Location Stock',
   edit_location_stock: 'Edit Location Stock',
   transfer_stock: 'Transfer Stock',

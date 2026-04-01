@@ -501,6 +501,8 @@ const locale = {
   stock_locations: 'Raktárhelyek',
   export_csv: 'CSV exportálás',
   export_inventory_by_location: 'Készlet exportálása helyszín szerint',
+  restock_low_stock: 'Alacsony készlet feltöltése',
+  no_low_stock_parts: 'Jelenleg egyetlen alkatrész sem van a minimális mennyiség alatt.',
   add_location_stock: 'Helyszín készlet hozzáadása',
   edit_location_stock: 'Helyszín készlet szerkesztése',
   transfer_stock: 'Készlet áthelyezése',

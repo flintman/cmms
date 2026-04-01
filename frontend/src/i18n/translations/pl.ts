@@ -579,6 +579,8 @@ const plJSON = {
   stock_locations: 'Lokalizacje magazynowe',
   export_csv: 'Eksportuj CSV',
   export_inventory_by_location: 'Eksportuj inwentarz według lokalizacji',
+  restock_low_stock: 'Uzupełnij niski stan',
+  no_low_stock_parts: 'Żadna część nie jest obecnie poniżej minimalnej ilości.',
   add_location_stock: 'Dodaj zapas lokalizacji',
   edit_location_stock: 'Edytuj zapas lokalizacji',
   transfer_stock: 'Przenieś zapas',

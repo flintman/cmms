@@ -698,6 +698,8 @@ const frJSON = {
   stock_locations: 'Emplacements de stock',
   export_csv: 'Exporter CSV',
   export_inventory_by_location: "Exporter l'inventaire par emplacement",
+  restock_low_stock: 'Réapprovisionner les stocks bas',
+  no_low_stock_parts: 'Aucune pièce n\'est actuellement en dessous de la quantité minimale.',
   add_location_stock: 'Ajouter un stock par emplacement',
   edit_location_stock: 'Modifier le stock par emplacement',
   transfer_stock: 'Transférer le stock',

@@ -34,4 +34,5 @@ export interface PartMiniDTO {
   cost: number;
   description: string;
   quantity: number;
+  minQuantity: number;
 }

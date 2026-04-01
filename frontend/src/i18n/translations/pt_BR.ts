@@ -602,6 +602,8 @@ const ptBRJSON = {
   stock_locations: 'Locais de estoque',
   export_csv: 'Exportar CSV',
   export_inventory_by_location: 'Exportar inventário por local',
+  restock_low_stock: 'Reabastecer estoque baixo',
+  no_low_stock_parts: 'Nenhuma peça está atualmente abaixo da quantidade mínima.',
   add_location_stock: 'Adicionar estoque por local',
   edit_location_stock: 'Editar estoque por local',
   transfer_stock: 'Transferir estoque',

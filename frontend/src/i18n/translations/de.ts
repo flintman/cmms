@@ -606,6 +606,8 @@ const deJSON = {
   stock_locations: 'Lagerorte',
   export_csv: 'CSV exportieren',
   export_inventory_by_location: 'Inventar nach Standort exportieren',
+  restock_low_stock: 'Niedrigen Bestand auffüllen',
+  no_low_stock_parts: 'Derzeit sind keine Teile unter der Mindestmenge.',
   add_location_stock: 'Lagerbestand hinzufügen',
   edit_location_stock: 'Lagerbestand bearbeiten',
   transfer_stock: 'Bestand übertragen',

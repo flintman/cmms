@@ -580,6 +580,8 @@ const ruJSON = {
   stock_locations: 'Места хранения',
   export_csv: 'Экспорт CSV',
   export_inventory_by_location: 'Экспорт запасов по местам',
+  restock_low_stock: 'Пополнить низкий запас',
+  no_low_stock_parts: 'В настоящее время нет деталей ниже минимального количества.',
   add_location_stock: 'Добавить запас по месту',
   edit_location_stock: 'Изменить запас по месту',
   transfer_stock: 'Перенести запас',

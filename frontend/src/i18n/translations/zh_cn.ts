@@ -442,6 +442,8 @@ const locale = {
   stock_locations: '库存位置',
   export_csv: '导出CSV',
   export_inventory_by_location: '按位置导出库存',
+  restock_low_stock: '补充低库存',
+  no_low_stock_parts: '目前没有零件低于最低数量。',
   add_location_stock: '添加位置库存',
   edit_location_stock: '编辑位置库存',
   transfer_stock: '转移库存',

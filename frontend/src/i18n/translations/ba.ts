@@ -574,6 +574,8 @@ const locale = {
   stock_locations: 'Lokacije zaliha',
   export_csv: 'Izvezi CSV',
   export_inventory_by_location: 'Izvezi inventar po lokacijama',
+  restock_low_stock: 'Dopuni niske zalihe',
+  no_low_stock_parts: 'Trenutno nema dijelova ispod minimalne količine.',
   add_location_stock: 'Dodaj zalihe lokacije',
   edit_location_stock: 'Uredi zalihe lokacije',
   transfer_stock: 'Prenesi zalihe',

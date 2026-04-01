@@ -53,6 +53,8 @@ import Category from '../../../models/owns/category';
 import { SearchCriteria } from '../../../models/owns/page';
 import { onSearchQueryChange } from '../../../utils/overall';
 import SearchInput from '../components/SearchInput';
+import api from '../../../utils/api';
+import { randomInt } from '../../../utils/generators';
 
 function PurchaseOrders() {
   const { t }: { t: any } = useTranslation();
@@ -85,6 +87,60 @@ function PurchaseOrders() {
   const partQuantities =
     partQuantitiesByPurchaseOrder[currentPurchaseOrder?.id] ?? [];
   const { showSnackBar } = useContext(CustomSnackBarContext);
+  const [loadingLowStock, setLoadingLowStock] = useState(false);
+
+  const handleCreateLowStock = async () => {
+    setLoadingLowStock(true);
+    try {
+      const [allParts, allStocks] = await Promise.all([
+        api.get<any[]>('parts/mini'),
+        api.get<any[]>('part-stocks/company')
+      ]);
+      const stocksByPartId = new Map<number, any[]>();
+      for (const s of allStocks) {
+        const arr = stocksByPartId.get(s.partId) ?? [];
+        arr.push(s);
+        stocksByPartId.set(s.partId, arr);
+      }
+      const partQuantities = allParts
+        .map((part: any) => {
+          const stocks = stocksByPartId.get(part.id) ?? [];
+          const mainDeficit =
+            part.minQuantity > 0 && part.quantity < part.minQuantity
+              ? part.minQuantity - part.quantity
+              : 0;
+          const stockDeficit = stocks.reduce((sum: number, s: any) => {
+            return (
+              sum +
+              (s.minQuantity > 0 && s.quantity < s.minQuantity
+                ? s.minQuantity - s.quantity
+                : 0)
+            );
+          }, 0);
+          const totalDeficit = mainDeficit + stockDeficit;
+          if (totalDeficit <= 0) return null;
+          return {
+            part,
+            quantity: totalDeficit,
+            id: randomInt(),
+            createdAt: new Date().toDateString(),
+            createdBy: null,
+            updatedAt: null,
+            updatedBy: null
+          };
+        })
+        .filter(Boolean);
+      if (partQuantities.length === 0) {
+        showSnackBar(t('no_low_stock_parts'), 'success');
+        return;
+      }
+      navigate('/app/purchase-orders/create', { state: { partQuantities } });
+    } catch {
+      showSnackBar(t('error_fetching_data'), 'error');
+    } finally {
+      setLoadingLowStock(false);
+    }
+  };
   const onQueryChange = (event) => {
     onSearchQueryChange<PurchaseOrder>(event, criteria, setCriteria, [
       'name',
@@ -537,13 +593,22 @@ function PurchaseOrders() {
                 alignItems="center"
               >
                 <SearchInput onChange={debouncedQueryChange} />
-                <Button
-                  onClick={() => navigate('/app/purchase-orders/create')}
-                  startIcon={<AddTwoToneIcon />}
-                  variant="contained"
-                >
-                  {t('purchase_order')}
-                </Button>
+                <Stack direction="row" spacing={1}>
+                  <Button
+                    onClick={handleCreateLowStock}
+                    disabled={loadingLowStock}
+                    variant="outlined"
+                  >
+                    {t('restock_low_stock')}
+                  </Button>
+                  <Button
+                    onClick={() => navigate('/app/purchase-orders/create')}
+                    startIcon={<AddTwoToneIcon />}
+                    variant="contained"
+                  >
+                    {t('purchase_order')}
+                  </Button>
+                </Stack>
               </Stack>
             )}
             <Card
